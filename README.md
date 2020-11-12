@@ -1,5 +1,11 @@
-# Overseer
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![MIT License][license-shield]][license-url]
+[![LinkedIn][linkedin-shield]][linkedin-url]
 
+<!-- PROJECT LOGO -->
 <br />
 <p align="center">
     <img src="public/assets/images/deathmark-discord-avatar.png" alt="Logo" width="80" height="80">
@@ -15,7 +21,15 @@
   </p>
 </p>
 
-<!--
-![DeathMark Discord avatar](https://github.com/QuentinLucyyd/overseer/blob/master/public/assets/images/deathmark-discord-avatar.png?raw=true)
-![](<img src="" alt="alt text" width="500" height="500">)
--->
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=flat-square
+[contributors-url]: https://github.com/QuentinLucyyd/overseer/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=flat-square
+[forks-url]: https://github.com/QuentinLucyyd/overseer/network/members
+[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=flat-square
+[stars-url]: https://github.com/QuentinLucyyd/overseer/stargazers
+[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=flat-square
+[issues-url]: https://github.com/QuentinLucyyd/overseer/issues
+[product-screenshot]: images/screenshot.png
