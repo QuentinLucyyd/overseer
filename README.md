@@ -1,8 +1,6 @@
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-
+![GitHub contributors](https://img.shields.io/github/contributors/QuentinLucyyd/overseer)
+![GitHub forks](https://img.shields.io/github/forks/QuentinLucyyd/overseer?label=forks&style=social)
+![GitHub issues](https://img.shields.io/github/issues/QuentinLucyyd/overseer)
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
