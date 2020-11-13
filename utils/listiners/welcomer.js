@@ -8,12 +8,6 @@ const {MessageAttachment} = require('discord.js')
 const db = require("../../firebase").database();
 const ref = db.ref("defaults/welcome");
 
-client.on('message', (message) => {
-    if (!message.content.startsWith('*')) return;
-
-    console.log(`Guild Id: ${message.guild.id}, ${message.guild.name}`)
-})
-
 client.on('guildMemberAdd', (member) => {
     ref.on("value", async function (snapshot) {
         const channel_id = snapshot.val().channel_id;
