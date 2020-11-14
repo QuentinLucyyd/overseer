@@ -18,7 +18,7 @@ const dailycron = cron.schedule('0 0 0 * * *', () => {
             })
         }
     })
-});
+}, { scheduled: true, timezone: 'Africa/Johannesburg' });
 
 module.exports = {
     dailycron
