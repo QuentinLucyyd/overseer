@@ -13,11 +13,11 @@ client.on('guildMemberAdd', (member) => {
         const channel_id = snapshot.val().channel_id;
         const channel = member.guild.channels.cache.get(channel_id);
 
-        const welcomeCanvas = Canvas.createCanvas(700, 250);
+        const welcomeCanvas = Canvas.createCanvas(700, 400);
         const ctx = welcomeCanvas.getContext('2d');
 
         const background = await Canvas.loadImage(
-            path.join(__dirname,'../../public/assets/images/deathmark-canvas-bg.png')
+            path.join(__dirname, '../../public/assets/images/deathmark-canvas-bg.png')
         );
 
         let x = 0;
@@ -25,25 +25,25 @@ client.on('guildMemberAdd', (member) => {
         ctx.drawImage(background, x, y);
 
         const profileImage = await Canvas.loadImage(
-            member.user.displayAvatarURL({format: 'png'})
+            member.user.displayAvatarURL({format: 'png', dynamic: true, size: 256})
         );
 
         x = welcomeCanvas.width / 2 - profileImage.width / 2;
         y = welcomeCanvas.height / 2 - profileImage.height / 2;
-        ctx.drawImage(profileImage, x, y - 30);
+        ctx.drawImage(profileImage, x, y - 50);
 
         // User text
         ctx.fillStyle = '#ffffff' // White text
         ctx.font = '30px sans-serif'
         let text = `Welcome to the DeathMark ${member.user.tag}!`
         x = welcomeCanvas.width / 2 - ctx.measureText(text).width / 2
-        ctx.fillText(text, x, 60 + profileImage.height)
+        ctx.fillText(text, x, 70 + profileImage.height)
 
         // Member count
         ctx.font = '28px sans-serif'
         text = `Member #${member.guild.memberCount}`
         x = welcomeCanvas.width / 2 - ctx.measureText(text).width / 2
-        ctx.fillText(text, x, 100 + profileImage.height)
+        ctx.fillText(text, x, 110 + profileImage.height)
 
         //Attach to message and send
         const attachment = new MessageAttachment(welcomeCanvas.toBuffer());
