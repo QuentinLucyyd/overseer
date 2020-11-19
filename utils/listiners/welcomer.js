@@ -1,56 +1,27 @@
 "use strict"
 const client = require("../client");
-const path = require("path")
-const Canvas = require("canvas");
-const {MessageAttachment} = require('discord.js')
+const { MessageAttachment } = require('discord.js')
+const { getWelcomeCard } = require('../canvas');
+const { addDefaultRole } = require('../roles');
 
 //Firebase database reference for channel defaults
 const db = require("../../firebase").database();
-const ref = db.ref("defaults/welcome");
 
-client.on('guildMemberAdd', (member) => {
-    ref.on("value", async function (snapshot) {
-        const channel_id = snapshot.val().channel_id;
-        const channel = member.guild.channels.cache.get(channel_id);
+client.on('guildMemberAdd', async (member) => {
+    await db.ref("defaults/welcome").once('value', async (snapshot) => {
+        for (const item of snapshot.val()) {
+            if (item.guild_id == member.guild.id) {
+                const card = await getWelcomeCard(member, member.guild);
+                const attachment = new MessageAttachment(card);
+                const channel = member.guild.channels.cache.get(item.channel_id);
 
-        const welcomeCanvas = Canvas.createCanvas(700, 400);
-        const ctx = welcomeCanvas.getContext('2d');
-
-        const background = await Canvas.loadImage(
-            path.join(__dirname, '../../public/assets/images/deathmark-canvas-bg.png')
-        );
-
-        let x = 0;
-        let y = 0;
-        ctx.drawImage(background, x, y);
-
-        const profileImage = await Canvas.loadImage(
-            member.user.displayAvatarURL({format: 'png', dynamic: true, size: 256})
-        );
-
-        x = welcomeCanvas.width / 2 - profileImage.width / 2;
-        y = welcomeCanvas.height / 2 - profileImage.height / 2;
-        ctx.drawImage(profileImage, x, y - 50);
-
-        // User text
-        ctx.fillStyle = '#ffffff' // White text
-        ctx.font = '30px sans-serif'
-        let text = `Welcome to the DeathMark ${member.user.tag}!`
-        x = welcomeCanvas.width / 2 - ctx.measureText(text).width / 2
-        ctx.fillText(text, x, 70 + profileImage.height)
-
-        // Member count
-        ctx.font = '28px sans-serif'
-        text = `Member #${member.guild.memberCount}`
-        x = welcomeCanvas.width / 2 - ctx.measureText(text).width / 2
-        ctx.fillText(text, x, 110 + profileImage.height)
-
-        //Attach to message and send
-        const attachment = new MessageAttachment(welcomeCanvas.toBuffer());
-        channel.send(`Welcome to the ***DeathMark 2.0*** ${member.user.toString()}. \n` +
-            '- If this is your first time here, Yaay :smile: \n' +
-            '- If this is not your first time here, Welcome back :) The original server got deleted due to some oopsies (we do not speak of the oopsies) :expressionless: \n', attachment);
-    }, function (err) {
+                await addDefaultRole(member.user, member.guild);
+                channel.send(`Welcome to the ***DeathMark 2.0*** ${member.user.toString()}. \n` +
+                    '- If this is your first time here, Yaay :smile: \n' +
+                    '- If this is not your first time here, Welcome back :) The original server got deleted due to some oopsies (we do not speak of the oopsies) :expressionless: \n', attachment);
+            }
+        }
+    }, err => {
         console.log(err);
     });
-});
+})
