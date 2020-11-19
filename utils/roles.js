@@ -7,7 +7,7 @@ async function addDefaultRole(member, guild) {
     const user = guild.members.cache.find((m) => m.user.tag === member.tag);
     await db.ref("defaults/roles").once('value', async (snapshot) => {
         for (const role of snapshot.val()) {
-            if (role.guild_id == guild.id) {
+            if (role.guild_id == guild.id && !member.bot) {
                 const guildRole = guild.roles.cache.find(r => r.id === role.role_id);
                 if (typeof guildRole !== 'undefined') {
                     user.roles.add(guildRole);
