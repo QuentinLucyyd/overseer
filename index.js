@@ -10,6 +10,7 @@ const cron = require("./utils/crons/daily-cron");
 /* Listeners */
 const welcomer = require("./utils/listiners/welcomer");
 const antispam = require("./utils/listiners/anti-spam");
+const meme = require("./utils/listiners/meme");
 
 /* Setup Express app */
 app.use(express.static("public"));

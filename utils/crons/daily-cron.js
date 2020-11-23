@@ -6,7 +6,7 @@ const helpers = require("../helpers");
 //Firebase database reference for channel defaults
 const db = require("../../firebase").database();
 
-const dailycron = cron.schedule('0 0 0 * * *', () => {
+const dailycron = cron.schedule('* 5 * * * *', () => {
     db.ref("defaults/daily").once('value', (snapshot) => {
         for (const item of snapshot.val()) {
             client.guilds.fetch(item.guild_id).then(guild => {
