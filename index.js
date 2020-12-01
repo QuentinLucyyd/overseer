@@ -11,6 +11,7 @@ const cron = require("./utils/crons/daily-cron");
 const welcomer = require("./utils/listiners/welcomer");
 const antispam = require("./utils/listiners/anti-spam");
 const meme = require("./utils/listiners/meme");
+const rolecommand = require("./utils/listiners/role-command");
 
 /* Setup Express app */
 app.use(express.static("public"));

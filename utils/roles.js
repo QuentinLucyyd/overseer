@@ -18,6 +18,27 @@ async function addDefaultRole(member, guild) {
     })
 }
 
+async function assignRole(member, guild, roleId) {
+    const guildRole = guild.roles.cache.find(r => r.id === roleId);
+
+    if (typeof guildRole !== 'undefined') {
+        await member.roles.add(guildRole);
+        console.log(`User [${member.nickname}] has been assigned the role []`)
+    }
+}
+
+async function unassignRole(member, guild, roleId) {
+    const guildRole = guild.roles.cache.find(r => r.id === roleId);
+
+    if (typeof guildRole !== 'undefined') {
+        await member.roles.remove(guildRole);
+        console.log(`User [${member.nickname}] has been unassigned the role []`)
+    }
+}
+
+
 module.exports = {
-    addDefaultRole
+    addDefaultRole,
+    assignRole,
+    unassignRole
 }
