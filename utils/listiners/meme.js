@@ -5,7 +5,7 @@ const url = 'https://www.reddit.com/r/dankmemes/hot/.json?limit=100'
 const client = require("../client");
 
 client.on('message', async (message) => {
-    if (message.content.startsWith('*pls meme')) {
+    if (message.content.toLowerCase().startsWith('*pls meme')) {
         https.get(url, (result) => {
             let body = '';
             result.on('data', (chunk) => {
