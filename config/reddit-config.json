@@ -1,0 +1,4 @@
+[
+    {"command": "meme", "url": "https://www.reddit.com/r/dankmemes/hot/.json?limit=100"},
+    {"command": "aww", "url": "https://www.reddit.com/r/Awww/hot/.json?limit=100"}
+]
